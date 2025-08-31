@@ -1,0 +1,10 @@
+hello.obj:  hello.asm
+       MASM hello,hello,hello,hello
+
+hello.ref:  hello.crf
+       CREF hello,hello
+
+hello.exe:  hello.obj
+       LINK hello,hello,hello/map,;
+
+

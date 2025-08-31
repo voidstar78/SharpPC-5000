@@ -1,0 +1,63 @@
+ Microsoft MACRO Assembler  Version 3.00               	Page	1-1
+	 	 	 	 	 	 	 	01-01-80    
+
+
+1	 	 	 	 	       .8086
+2	 0000	 	 	 	DATA   segment
+3	 0000  53 48 41 52 50 20	STRING db "SHARP PC-5000", 13, 10, "$"
+4	       50 43 2D 35 30 30	
+5	       30 0D 0A 24	 	
+6	 0010	 	 	 	DATA   ends
+7	 	 	 	 	
+8	 0000	 	 	 	CODE   segment
+9	 	 	 	 	       assume cs:CODE, ds:DATA
+10	 0000	 	 	 	START:
+11	 0000  B8 ---- R	 	       MOV AX, seg DATA
+12	 0003  8E D8	 	 	       MOV DS, AX
+13	 0005  B4 09	 	 	       MOV AH, 9   ; DOS function to di
+	 	 	 	splay string
+14	 0007  BA 0000 R	 	       MOV DX, offset STRING ; Load eff
+	 	 	 	ective address of message
+15	 000A  CD 21	 	 	       INT 21h     ; invoke DOS functio
+	 	 	 	n
+16	 000C  B4 4C	 	 	       MOV AH, 4Ch ; DOS function to ex
+	 	 	 	it program
+17	 000E  CD 21	 	 	       INT 21h     ; invoke DOS functio
+	 	 	 	n
+18	 0010	 	 	 	CODE   ends
+19	 	 	 	 	
+20	 0000	 	 	 	STACK  segment stack
+21	 	 	 	 	       assume  ss:STACK
+22	 0000     40 [	 	 	       dw      64 dup(?)
+23	                ????	 	
+24	                      ]	 	
+25	 	 	 	 	
+26	 0080	 	 	 	STACK  ends
+27	 	 	 	 	
+28	 	 	 	 	       end     START
+
+ Microsoft MACRO Assembler  Version 3.00               	Page	Symbols
+	 	 	 	-1
+	 	 	 	 	 	 	 	01-01-80    
+
+
+Segments and Groups:
+
+	 	N a m e	 	 	Size	Align	Combine	Class
+
+CODE . . . . . . . . . . . . . .	0010	PARA  	NONE	
+DATA . . . . . . . . . . . . . .	0010	PARA  	NONE	
+STACK. . . . . . . . . . . . . .	0080	PARA  	STACK 	
+
+Symbols:            
+
+	 	N a m e	 	 	Type	Value	Attr         
+
+START. . . . . . . . . . . . . .	L NEAR 	0000	CODE
+STRING . . . . . . . . . . . . .	L BYTE 	0000	DATA
+
+49698 Bytes free   
+
+Warning Severe
+Errors	Errors 
+0	0
